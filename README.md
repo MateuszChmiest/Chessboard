@@ -1,1 +1,2 @@
-# Chessboard
+# ChessboardApp
+A JavaScript project
