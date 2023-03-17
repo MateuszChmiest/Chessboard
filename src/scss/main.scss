@@ -6,7 +6,9 @@
 @import "./general/typography";
 
 //* Import sections
-
+@import "./sections/dashboard";
+@import "./sections/board";
 
 //* Import elements
 @import "./elements/button";
+@import "./elements/input";

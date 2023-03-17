@@ -4,6 +4,19 @@ html {
 	font-size: 16px;
 }
 
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $color-gray;
+	width: 100vw;
+	height: 100vh;
+}
+
+.hidden {
+	display: none !important;
+}
+
 .container {
 	width: 100%;
 	margin: 0 1rem 0 1rem;
