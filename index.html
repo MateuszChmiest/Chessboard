@@ -11,16 +11,26 @@
 </head>
 <body>
   <main class="dashboard">
+    <!--Start panel-->
     <div class="dashboard__panel ">
       <div class="dashboard__data">
-        <h3 class="dashboard__data--title">Welcome!</h3>
-        <input id="playerName" class="dashboard__data--name input" type="text" placeholder="Enter Your Name"/>
-        <input id="boardSize" class="dashboard__data--boardSize input" type="number" min="3" max="9" placeholder="Enter board size (min 3, max 9)"/>
+        <h3 class="dashboard__data--title">ChessBoard</h3>
+        <input id="playerName" class="dashboard__data--input input" type="text" placeholder="Enter Your Name"/>
+        <input id="boardWidth" class="dashboard__data--input input" type="number" min="3" max="25" placeholder="Enter board width (min 3, max 25)"/>
+        <input id="boardHeight" class="dashboard__data--input input" type="number" min="3" max="25" placeholder="Enter board height (min 3, max 25)"/>
+        <label for="color" class="dashboard__data--label">Choose board color:</label>
+        <select id="boardColor" name="color" class="dashboard__data--input input">
+          <option selected value="black">Black</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="red">Red</option>
+        </select>
         <button class="dashboard__data--btn btn">Start</button>
       </div>
     </div>
+    <!--End Start panel-->
+    <p class="dashboard__playerName"></p>
     <div class="board hidden">
-
     </div>
   </main>
   <script src="src/js/main.js"></script>

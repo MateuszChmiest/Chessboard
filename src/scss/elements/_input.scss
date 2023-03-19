@@ -4,5 +4,13 @@
     height: 40px;
     border: 2px solid $color-black;
     border-radius: 1rem;
-    padding: 0.35rem;
+    padding: 0.25rem;
+    transition: all 200ms;
+
+    &:focus {
+        border-color: $color-blue;
+        -webkit-box-shadow: 0px 0px 30px -5px rgb(20, 128, 252);
+        -moz-box-shadow: 0px 0px 30px -5px rgb(20, 128, 252);
+        box-shadow: 0px 0px 30px -5px rgb(20, 128, 252);
+    }
 }

@@ -4,18 +4,13 @@
     align-items: center;
 	width: 90%;
 	height: 90%;
-	background-color: blue;
 }
 
 .cell {
-	height: 50px;
-	width: 50px;
 	border: 1.5px solid grey;
 	border-style: inset;
-}
-
-.blackCell {
-	background-color: black;
+	width: 2.25rem;
+	height: 2.25rem;
 }
 
 .whiteCell {
