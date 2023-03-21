@@ -512,12 +512,19 @@ body {
 .cell {
   border: 1.5px solid grey;
   border-style: inset;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: #fff;
 }
 
 .whiteCell {
   background-color: white;
+}
+
+.hero {
+  background-image: url("/src/images/octopus.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .btn {
