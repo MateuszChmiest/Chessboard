@@ -473,6 +473,30 @@ body {
   font-size: 1rem;
   border: 2px solid #000000;
 }
+.dashboard__exit {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  width: 42px;
+  cursor: pointer;
+  transition: all 200ms;
+}
+.dashboard__exit:hover {
+  transform: scale(1.1);
+}
+.dashboard__instruction {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  text-align: center;
+}
+.dashboard__instruction p {
+  width: 6rem;
+  color: white;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  font-weight: 300;
+}
 .dashboard__historyPanel {
   position: absolute;
   top: 70px;
@@ -533,6 +557,15 @@ body {
 .dashboard__data--label {
   font-size: 1.25rem;
   margin: 0.25rem 0 0.25rem 0;
+}
+
+.error-input {
+  border: 2px solid red !important;
+}
+
+.errors {
+  color: red;
+  margin-top: 1rem;
 }
 
 .board {

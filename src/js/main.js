@@ -2,7 +2,7 @@ const board = document.querySelector(".board");
 const boardHeight = document.getElementById("boardHeight");
 const boardWidth = document.getElementById("boardWidth");
 const boardColor = document.getElementById("boardColor");
-const inputName = document.getElementById("playerName");
+const playerName = document.getElementById("playerName");
 const dasboardButton = document.querySelector(".dashboard__data--btn");
 const dashboardPanel = document.querySelector(".dashboard__panel");
 const dashboardPlayerName = document.querySelector(".dashboard__playerName");
@@ -10,6 +10,8 @@ const historyButton = document.querySelector(".dashboard__history");
 const historyPanel = document.querySelector(".dashboard__historyPanel");
 const historyPanelElements = document.querySelector(".dashboard__historyPanel p");
 const closeIcon = document.getElementById("close");
+const exitIcon = document.getElementById("exit");
+const controlInstruction = document.querySelector(".dashboard__instruction");
 
 const heroMovements = []; // History of movements
 let xPosition = 0; // Hero position x
@@ -20,7 +22,7 @@ const createChessBoard = () => {
 	const chessBoardTable = document.createElement("table");
 	for (let i = 0; i < boardHeight.value; i++) {
 		const tr = document.createElement("tr");
-		for (let j = 0; j <= boardWidth.value; j++) {
+		for (let j = 0; j < boardWidth.value; j++) {
 			const td = document.createElement("td");
 			td.dataset.y = i;
 			td.dataset.x = j;
@@ -42,8 +44,10 @@ const createChessBoard = () => {
 		chessBoardTable.appendChild(tr);
 	}
 	board.appendChild(chessBoardTable);
-	dashboardPlayerName.innerHTML = "Player: " + inputName.value;
+	dashboardPlayerName.innerHTML = "Player: " + playerName.value;
 	historyButton.classList.remove("hidden");
+	exitIcon.classList.remove("hidden");
+	controlInstruction.classList.remove("hidden");
 	xPosition = Math.floor(boardWidth.value / 2);
 	yPosition = Math.floor(boardHeight.value / 2);
 	controlHero();
@@ -92,13 +96,27 @@ const displayHistory = (history) => {
 	return items;
 };
 
+const backToDashbord = () => {
+	window.location.reload();
+}
+
 // EventListeners
 dasboardButton.addEventListener("click", (e) => {
 	e.preventDefault();
-	dashboardPanel.classList.add("hidden");
-	board.classList.remove("hidden");
-	createChessBoard();
-	initHero();
+	const error = document.querySelector(".errors");
+	error.innerHTML = "";
+	dasboardButton.classList.remove("error-input");
+
+	if(!playerName.value || !boardWidth.value || !boardHeight.value) {
+		 return error.innerHTML = "All fields are required!", dasboardButton.classList.add("error-input");
+	} 
+	if(boardWidth.value < 3 || boardHeight.value < 3 || boardWidth.value > 20 || boardHeight.value > 20) {
+		return error.innerHTML = "Board height and width must be between 3 and 25", dasboardButton.classList.add("error-input");
+	}
+		dashboardPanel.classList.add("hidden");
+		board.classList.remove("hidden");
+		createChessBoard();
+		initHero();
 });
 
 historyButton.addEventListener("click", (e) => {
@@ -112,6 +130,10 @@ historyButton.addEventListener("click", (e) => {
 
 closeIcon.addEventListener("click", () => {
 	historyPanel.classList.add("hidden");
+});
+
+exitIcon.addEventListener("click", () => {
+	backToDashbord();
 });
 
 document.addEventListener("mouseup", (e) => {
