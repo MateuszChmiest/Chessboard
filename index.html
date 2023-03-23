@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Chess Board</title>
   <link rel="stylesheet" href="dist/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap"
-      rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
   <main class="dashboard">
     <!--Start panel-->
     <div class="dashboard__panel ">
       <div class="dashboard__data">
         <h3 class="dashboard__data--title">ChessBoard</h3>
-        <input id="playerName" class="dashboard__data--input input" type="text" placeholder="Enter Your Name"/>
-        <input id="boardWidth" class="dashboard__data--input input" type="number" min="3" max="25" placeholder="Enter board width (min 3, max 25)"/>
-        <input id="boardHeight" class="dashboard__data--input input" type="number" min="3" max="25" placeholder="Enter board height (min 3, max 25)"/>
+        <input id="playerName" class="dashboard__data--input input" type="text" placeholder="Enter Your Name" />
+        <input id="boardWidth" class="dashboard__data--input input" type="number" min="3" max="25"
+          placeholder="Enter board width (min 3, max 25)" />
+        <input id="boardHeight" class="dashboard__data--input input" type="number" min="3" max="25"
+          placeholder="Enter board height (min 3, max 25)" />
         <label for="color" class="dashboard__data--label">Choose board color:</label>
         <select id="boardColor" name="color" class="dashboard__data--input input">
           <option selected value="black">Black</option>
@@ -30,9 +33,15 @@
     </div>
     <!--End Start panel-->
     <p class="dashboard__playerName"></p>
+    <button class="dashboard__history btn hidden">Show history</button>
+    <div class="dashboard__historyPanel hidden">
+      <img id="close" class="dashboard__historyPanel--close" src="src/images/close.png" alt="close"/>
+      <p></p>
+    </div>
     <div class="board hidden">
     </div>
   </main>
   <script src="src/js/main.js"></script>
 </body>
+
 </html>

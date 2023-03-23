@@ -6,21 +6,24 @@ const inputName = document.getElementById("playerName");
 const dasboardButton = document.querySelector(".dashboard__data--btn");
 const dashboardPanel = document.querySelector(".dashboard__panel");
 const dashboardPlayerName = document.querySelector(".dashboard__playerName");
+const historyButton = document.querySelector(".dashboard__history");
+const historyPanel = document.querySelector(".dashboard__historyPanel");
+const historyPanelElements = document.querySelector(".dashboard__historyPanel p");
+const closeIcon = document.getElementById("close");
 
-let direction = "";
+const heroMovements = []; // History of movements
 let xPosition = 0; // Hero position x
 let yPosition = 0; // Hero position y
 
+// Functions
 const createChessBoard = () => {
 	const chessBoardTable = document.createElement("table");
-
 	for (let i = 0; i < boardHeight.value; i++) {
 		const tr = document.createElement("tr");
-    
-		for (let j = 0; j < boardWidth.value; j++) {
+		for (let j = 0; j <= boardWidth.value; j++) {
 			const td = document.createElement("td");
-      td.dataset.y = i;
-      td.dataset.x = j;
+			td.dataset.y = i;
+			td.dataset.x = j;
 
 			if (boardHeight.value && boardWidth.value >= 15) {
 				td.style.width = "1.75rem";
@@ -40,67 +43,56 @@ const createChessBoard = () => {
 	}
 	board.appendChild(chessBoardTable);
 	dashboardPlayerName.innerHTML = "Player: " + inputName.value;
+	historyButton.classList.remove("hidden");
+	xPosition = Math.floor(boardWidth.value / 2);
+	yPosition = Math.floor(boardHeight.value / 2);
+	controlHero();
 };
-
-const getIndex = (x, y) => {
-	return x + (y * (boardWidth.value - boardHeight.value));
-};
-
-// const changeDirection = (e) => {
-// 	if (e.code == "ArrowRight") {
-// 		x = x + 1;
-// 	} else if (e.code == "ArrowLeft") {
-// 		x = x - 1;
-// 	} else if (e.code == "ArrowDown") {
-// 		y = y + 1;
-// 	} else {
-// 		y = y - 1;
-// 	}
-// };
 
 const initHero = () => {
-
-
-	// if (direction === "up") yPosition--;
-	// if (direction === "down") yPosition++;
-	// if (direction === "right") xPosition++;
-	// if (direction === "left") xPosition--;
-
-	const heroPosition = document.querySelector(`[data-x]=${xPosition}][data-y]=${yPosition}`);
+	const heroPosition = document.querySelector(
+		`[data-y="${yPosition}"][data-x="${xPosition}"]`
+	);
 	heroPosition.classList.add("hero");
-  controlHero();
-  console.log(heroPosition);
 };
 
-const moveHero = () => {
-  hideVisibleHero();
-}
-
 const hideVisibleHero = () => {
-  document.querySelector('.hero').classList.remove('hero');
-}
+	document.querySelector(".hero").classList.remove("hero");
+};
 
 const controlHero = () => {
-  window.addEventListener("keydown" , (e) => {
-    if(e.key === "ArrowLeft") {
-      xPosition--;
-    }  
-    if(e.key === "ArrowUp") {
-      yPosition--;
-    } 
-    if(e.key === "ArrowRight") {
-      xPosition++;
-    }
-    if(e.key === "ArrowDown") {
-      yPosition++;
-    }
-    console.log(e.key)
-    console.log(direction)
-    hideVisibleHero();
-    initHero();
-  })
-}
+	window.addEventListener("keydown", (e) => {
+		if (e.key === "ArrowLeft") {
+			xPosition--;
+			heroMovements.unshift("Left");
+		}
+		if (e.key === "ArrowUp") {
+			yPosition--;
+			heroMovements.unshift("Up");
+		}
+		if (e.key === "ArrowRight") {
+			xPosition++;
+			heroMovements.unshift("Right");
+		}
+		if (e.key === "ArrowDown") {
+			yPosition++;
+			heroMovements.unshift("Down");
+		}
+		hideVisibleHero();
+		initHero();
+		historyPanel.classList.add("hidden");
+	});
+};
 
+const displayHistory = (history) => {
+	let items = "";
+	history.forEach((el) => {
+		items += `${el}, `;
+	});
+	return items;
+};
+
+// EventListeners
 dasboardButton.addEventListener("click", (e) => {
 	e.preventDefault();
 	dashboardPanel.classList.add("hidden");
@@ -109,46 +101,21 @@ dasboardButton.addEventListener("click", (e) => {
 	initHero();
 });
 
-// document.addEventListener('keyup', changeDirection());
+historyButton.addEventListener("click", (e) => {
+	historyPanel.classList.remove("hidden");
 
-//Klasa Furry
-class Furry {
-	constructor(x, y, direction) {
-		this.x = 0;
-		this.y = 0;
-		this.direction = "right";
+	historyPanelElements.innerHTML =
+		heroMovements.length > 0
+			? displayHistory(heroMovements)
+			: "History is empty";
+});
+
+closeIcon.addEventListener("click", () => {
+	historyPanel.classList.add("hidden");
+});
+
+document.addEventListener("mouseup", (e) => {
+	if (!historyPanel.contains(e.target)) {
+		historyPanel.classList.add("hidden");
 	}
-}
-
-//Klasa gry
-class Game {
-	constructor(board, furry) {
-		this.board = document.querySelectorAll(".cell"); // this is an array
-		this.furry = new Furry();
-	}
-
-	getIndex(x, y) {
-		return x + y * 1;
-	}
-
-	showFurry() {
-		const furryPosition = this.board[this.getIndex(this.furry.x, this.furry.y)];
-		furryPosition.classList.add("hero");
-	}
-
-	hideVisibleFurry() {}
-
-	moveFurry() {}
-
-	turnFurry(event) {}
-
-	checkCoinCollision() {}
-
-	gameOver() {}
-
-	startGame() {}
-}
-
-//Uruchomienie
-
-//wywołanie metod i eventu keydown
+});
