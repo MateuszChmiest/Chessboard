@@ -541,6 +541,7 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
 }
 .dashboard__data-btn {
   width: 23.125rem;
