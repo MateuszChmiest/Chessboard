@@ -7,7 +7,7 @@
 	max-width: 1400px;
 	background-color: $color-gray;
 	border: 3px solid $color-blue;
-	border-radius: 25px;
+	border-radius: 1.5625rem;
 	margin: 0 1rem 0 1rem;
 	-webkit-box-shadow: 0px 0px 38px -5px rgb(20, 128, 252);
 	-moz-box-shadow: 0px 0px 38px -5px rgb(20, 128, 252);
@@ -24,25 +24,25 @@
 
 	&__playerName {
 		position: absolute;
-		top: 20px;
-		right: 20px;
+		top: 1.25rem;
+		right: 1.25rem;
 		font-size: 1rem;
 		color: $color-white;
 	}
 
 	&__history {
 		position: absolute;
-		top: 20px;
-		left: 20px;
+		top: 1.25rem;
+		left: 1.25rem;
 		font-size: 1rem;
 		border: 2px solid $color-black;
 	}
 
 	&__exit {
 		position: absolute;
-		left: 20px;
-		bottom: 20px;
-		width: 42px;
+		left: 1.25rem;
+		bottom: 1.25rem;
+		width: 2.625rem;
 		cursor: pointer;
 		transition: all 200ms;
 
@@ -53,8 +53,8 @@
 
 	&__instruction {
 		position: absolute;
-		right: 20px;
-		bottom: 10px;
+		right: 1.25rem;
+		bottom: 0.625rem;
 		text-align: center;
 
 		p {
@@ -69,8 +69,8 @@
 
 	&__historyPanel {
 		position: absolute;
-		top: 70px;
-		left: 20px;
+		top: 4.375rem;
+		left: 1.25rem;
 		max-width: 250px;
 		max-height: 200px;
 		background: rgba(191, 191, 191, 0.36);
@@ -84,7 +84,7 @@
 		overflow-y: auto;
 		color: $color-white;
 
-		&--close {
+		&-close {
 			position: absolute;
 			left: 0;
 			top: 0;
@@ -103,16 +103,16 @@
 		align-items: center;
 		flex-direction: column;
 		background: rgba(191, 191, 191, 0.36);
-		border-radius: 16px;
+		border-radius: 1rem;
 		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 		backdrop-filter: blur(10.6px);
 		-webkit-backdrop-filter: blur(10.6px);
 		border: 1px solid rgba(191, 191, 191, 0.78);
 		width: 90%;
 		height: 90%;
-		border-radius: 25px;
+		border-radius: 1.5625rem;
 
-		&--title {
+		&-title {
 			font-size: 2.5rem;
 			font-weight: bold;
 			background: -webkit-linear-gradient($color-blue, $color-black);
@@ -121,16 +121,16 @@
 			-webkit-text-fill-color: transparent;
 		}
 
-		&--btn {
+		&-btn {
 			width: 23.125rem;
 			margin-top: 0.75rem;
 		}
 
-		&--input {
+		&-input {
 			margin: 0.25rem 0 0.25rem 0;
 		}
 
-		&--label {
+		&-label {
 			font-size: 1.25rem;
 			margin: 0.25rem 0 0.25rem 0;
 		}

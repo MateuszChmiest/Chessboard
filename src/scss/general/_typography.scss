@@ -16,24 +16,3 @@ body {
 .hidden {
 	display: none !important;
 }
-
-.container {
-	width: 100%;
-	margin: 0 1rem 0 1rem;
-  
-	// @include small {
-	// 	max-width: 480px;
-	// }
-
-	// @include medium {
-	// 	max-width: 768px;
-	// }
-
-	// @include large {
-	// 	max-width: 976px;
-	// }
-
-	// @include xlarge {
-	// 	max-width: 1440px;
-	// }
-}

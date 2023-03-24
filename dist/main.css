@@ -433,11 +433,6 @@ body {
   display: none !important;
 }
 
-.container {
-  width: 100%;
-  margin: 0 1rem 0 1rem;
-}
-
 .dashboard {
   display: flex;
   justify-content: center;
@@ -447,7 +442,7 @@ body {
   max-width: 1400px;
   background-color: #24292f;
   border: 3px solid #1480fc;
-  border-radius: 25px;
+  border-radius: 1.5625rem;
   margin: 0 1rem 0 1rem;
   box-shadow: 0px 0px 38px -5px rgb(20, 128, 252);
   position: relative;
@@ -461,23 +456,23 @@ body {
 }
 .dashboard__playerName {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 1.25rem;
+  right: 1.25rem;
   font-size: 1rem;
   color: white;
 }
 .dashboard__history {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 1.25rem;
+  left: 1.25rem;
   font-size: 1rem;
   border: 2px solid #000000;
 }
 .dashboard__exit {
   position: absolute;
-  left: 20px;
-  bottom: 20px;
-  width: 42px;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  width: 2.625rem;
   cursor: pointer;
   transition: all 200ms;
 }
@@ -486,8 +481,8 @@ body {
 }
 .dashboard__instruction {
   position: absolute;
-  right: 20px;
-  bottom: 10px;
+  right: 1.25rem;
+  bottom: 0.625rem;
   text-align: center;
 }
 .dashboard__instruction p {
@@ -499,8 +494,8 @@ body {
 }
 .dashboard__historyPanel {
   position: absolute;
-  top: 70px;
-  left: 20px;
+  top: 4.375rem;
+  left: 1.25rem;
   max-width: 250px;
   max-height: 200px;
   background: rgba(191, 191, 191, 0.36);
@@ -514,14 +509,14 @@ body {
   overflow-y: auto;
   color: white;
 }
-.dashboard__historyPanel--close {
+.dashboard__historyPanel-close {
   position: absolute;
   left: 0;
   top: 0;
   cursor: pointer;
   transition: all 200ms;
 }
-.dashboard__historyPanel--close:hover {
+.dashboard__historyPanel-close:hover {
   transform: scale(1.1);
 }
 .dashboard__data {
@@ -530,16 +525,16 @@ body {
   align-items: center;
   flex-direction: column;
   background: rgba(191, 191, 191, 0.36);
-  border-radius: 16px;
+  border-radius: 1rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10.6px);
   -webkit-backdrop-filter: blur(10.6px);
   border: 1px solid rgba(191, 191, 191, 0.78);
   width: 90%;
   height: 90%;
-  border-radius: 25px;
+  border-radius: 1.5625rem;
 }
-.dashboard__data--title {
+.dashboard__data-title {
   font-size: 2.5rem;
   font-weight: bold;
   background: -webkit-linear-gradient(#1480fc, #000000);
@@ -547,14 +542,14 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.dashboard__data--btn {
+.dashboard__data-btn {
   width: 23.125rem;
   margin-top: 0.75rem;
 }
-.dashboard__data--input {
+.dashboard__data-input {
   margin: 0.25rem 0 0.25rem 0;
 }
-.dashboard__data--label {
+.dashboard__data-label {
   font-size: 1.25rem;
   margin: 0.25rem 0 0.25rem 0;
 }
@@ -579,8 +574,8 @@ body {
 .cell {
   border: 1.5px solid grey;
   border-style: inset;
-  width: 3rem;
-  height: 3rem;
+  width: 2.75rem;
+  height: 2.75rem;
   background-color: #fff;
 }
 

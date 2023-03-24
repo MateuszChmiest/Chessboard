@@ -12,38 +12,41 @@
 
 <body>
   <main class="dashboard">
-    <!--Start panel-->
+
     <div class="dashboard__panel ">
       <div class="dashboard__data">
-        <h3 class="dashboard__data--title">ChessBoard</h3>
-        <input id="playerName" class="dashboard__data--input input" type="text" placeholder="Enter Your Name" />
-        <input id="boardWidth" class="dashboard__data--input input" type="number" min="3" max="20"
+        <h3 class="dashboard__data-title">ChessBoard</h3>
+        <input id="playerName" class="dashboard__data-input input" type="text" placeholder="Enter Your Name" />
+        <input id="boardWidth" class="dashboard__data-input input" type="number" min="3" max="20"
           placeholder="Enter board width (min 3, max 20)" />
-        <input id="boardHeight" class="dashboard__data--input input" type="number" min="3" max="20"
+        <input id="boardHeight" class="dashboard__data-input input" type="number" min="3" max="20"
           placeholder="Enter board height (min 3, max 20)" />
-        <label for="color" class="dashboard__data--label">Choose board color:</label>
-        <select id="boardColor" name="color" class="dashboard__data--input input">
+        <label for="color" class="dashboard__data-label">Choose board color:</label>
+        <select id="boardColor" name="color" class="dashboard__data-input input">
           <option selected value="black">Black</option>
           <option value="green">Green</option>
           <option value="blue">Blue</option>
           <option value="red">Red</option>
         </select>
-        <button class="dashboard__data--btn btn">Start</button>
+        <button class="dashboard__data-btn btn">Start</button>
         <p class="errors"></p>
       </div>
     </div>
-    <!--End Start panel-->
+
     <p class="dashboard__playerName"></p>
     <button class="dashboard__history btn hidden">Show history</button>
-    <img id="exit" class="dashboard__exit hidden" src="src/images/exit.png" alt="exit"/>
+    <img id="exit" class="dashboard__exit hidden" src="src/images/exit.png" alt="exit" />
+
     <div class="dashboard__historyPanel hidden">
-      <img id="close" class="dashboard__historyPanel--close" src="src/images/close.png" alt="close"/>
+      <img id="close" class="dashboard__historyPanel-close" src="src/images/close.png" alt="close" />
       <p></p>
     </div>
+
     <div class="dashboard__instruction hidden">
       <p>Use the arrows on your keyboard</p>
-      <img class="dashboard__arrows" src="src/images/arrows.png" alt="keyboard arrows"/>
+      <img class="dashboard__arrows" src="src/images/arrows.png" alt="keyboard arrows" />
     </div>
+
     <div class="board hidden">
     </div>
   </main>

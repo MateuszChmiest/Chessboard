@@ -3,19 +3,21 @@ const boardHeight = document.getElementById("boardHeight");
 const boardWidth = document.getElementById("boardWidth");
 const boardColor = document.getElementById("boardColor");
 const playerName = document.getElementById("playerName");
-const dasboardButton = document.querySelector(".dashboard__data--btn");
+const dasboardButton = document.querySelector(".dashboard__data-btn");
 const dashboardPanel = document.querySelector(".dashboard__panel");
 const dashboardPlayerName = document.querySelector(".dashboard__playerName");
 const historyButton = document.querySelector(".dashboard__history");
 const historyPanel = document.querySelector(".dashboard__historyPanel");
-const historyPanelElements = document.querySelector(".dashboard__historyPanel p");
+const historyPanelElements = document.querySelector(
+	".dashboard__historyPanel p"
+);
 const closeIcon = document.getElementById("close");
 const exitIcon = document.getElementById("exit");
 const controlInstruction = document.querySelector(".dashboard__instruction");
 
-const heroMovements = []; // History of movements
-let xPosition = 0; // Hero position x
-let yPosition = 0; // Hero position y
+const heroMovements = [];
+let xHeroPosition = 0;
+let yHeroPosition = 0;
 
 // Functions
 const createChessBoard = () => {
@@ -29,8 +31,8 @@ const createChessBoard = () => {
 			td.dataset.x = j;
 
 			if (boardHeight.value >= 15 || boardWidth.value >= 15) {
-				td.style.width = "1.75rem";
-				td.style.height = "1.75rem";
+				td.style.width = "1.875rem";
+				td.style.height = "1.875rem";
 			}
 
 			if ((i + j) % 2 == 0) {
@@ -44,20 +46,22 @@ const createChessBoard = () => {
 		}
 		chessBoardTable.appendChild(tr);
 	}
-	
+
+	// boardHeight.value.forEach((board) => console.log(board));
+
 	board.appendChild(chessBoardTable);
 	dashboardPlayerName.innerHTML = "Player: " + playerName.value;
 	historyButton.classList.remove("hidden");
 	exitIcon.classList.remove("hidden");
 	controlInstruction.classList.remove("hidden");
-	xPosition = Math.floor(boardWidth.value / 2);
-	yPosition = Math.floor(boardHeight.value / 2);
+	xHeroPosition = Math.floor(boardWidth.value / 2);
+	yHeroPosition = Math.floor(boardHeight.value / 2);
 	controlHero();
 };
 
 const initHero = () => {
 	const heroPosition = document.querySelector(
-		`[data-y="${yPosition}"][data-x="${xPosition}"]`
+		`[data-y="${yHeroPosition}"][data-x="${xHeroPosition}"]`
 	);
 	heroPosition.classList.add("hero");
 };
@@ -68,22 +72,37 @@ const hideVisibleHero = () => {
 
 const controlHero = () => {
 	window.addEventListener("keydown", (e) => {
-		if (e.key === "ArrowLeft" && xPosition > 0) {
-			xPosition--;
-			heroMovements.unshift("Left");
+		const keyValues = ["ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown"];
+		if (!keyValues.includes(e.key)) return;
+
+		switch (e.key) {
+			case "ArrowLeft":
+				if (xHeroPosition > 0) {
+					xHeroPosition--;
+					heroMovements.unshift("Left");
+				}
+				break;
+			case "ArrowUp":
+				if (yHeroPosition > 0) {
+					yHeroPosition--;
+					heroMovements.unshift("Up");
+				}
+				break;
+			case "ArrowRight":
+				if (xHeroPosition < boardWidth.value - 1) {
+					xHeroPosition++;
+					heroMovements.unshift("Right");
+				}
+				break;
+			case "ArrowDown":
+				if (yHeroPosition < boardHeight.value - 1) {
+					yHeroPosition++;
+					heroMovements.unshift("Down");
+				}
+				break;
+			default:
 		}
-		if (e.key === "ArrowUp" && yPosition > 0) {
-			yPosition--;
-			heroMovements.unshift("Up");
-		}
-		if (e.key === "ArrowRight" && xPosition < (boardWidth.value - 1)) {
-			xPosition++;
-			heroMovements.unshift("Right");
-		}
-		if (e.key === "ArrowDown" && yPosition < (boardHeight.value - 1)) {
-			yPosition++;
-			heroMovements.unshift("Down");
-		}
+
 		hideVisibleHero();
 		initHero();
 		historyPanel.classList.add("hidden");
@@ -100,7 +119,7 @@ const displayHistory = (history) => {
 
 const backToDashbord = () => {
 	window.location.reload();
-}
+};
 
 // EventListeners
 dasboardButton.addEventListener("click", (e) => {
@@ -109,16 +128,27 @@ dasboardButton.addEventListener("click", (e) => {
 	error.innerHTML = "";
 	dasboardButton.classList.remove("error-input");
 
-	if(!playerName.value || !boardWidth.value || !boardHeight.value) {
-		 return error.innerHTML = "All fields are required!", dasboardButton.classList.add("error-input");
-	} 
-	if(boardWidth.value < 3 || boardHeight.value < 3 || boardWidth.value > 20 || boardHeight.value > 20) {
-		return error.innerHTML = "Board height and width must be between 3 and 20", dasboardButton.classList.add("error-input");
+	if (!playerName.value || !boardWidth.value || !boardHeight.value) {
+		return (
+			(error.innerHTML = "All fields are required!"),
+			dasboardButton.classList.add("error-input")
+		);
 	}
-		dashboardPanel.classList.add("hidden");
-		board.classList.remove("hidden");
-		createChessBoard();
-		initHero();
+	if (
+		boardWidth.value < 3 ||
+		boardHeight.value < 3 ||
+		boardWidth.value > 20 ||
+		boardHeight.value > 20
+	) {
+		return (
+			(error.innerHTML = "Board height and width must be between 3 and 20"),
+			dasboardButton.classList.add("error-input")
+		);
+	}
+	dashboardPanel.classList.add("hidden");
+	board.classList.remove("hidden");
+	createChessBoard();
+	initHero();
 });
 
 historyButton.addEventListener("click", (e) => {
