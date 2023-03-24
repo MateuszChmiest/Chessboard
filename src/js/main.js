@@ -20,6 +20,7 @@ let yPosition = 0; // Hero position y
 // Functions
 const createChessBoard = () => {
 	const chessBoardTable = document.createElement("table");
+
 	for (let i = 0; i < boardHeight.value; i++) {
 		const tr = document.createElement("tr");
 		for (let j = 0; j < boardWidth.value; j++) {
@@ -27,7 +28,7 @@ const createChessBoard = () => {
 			td.dataset.y = i;
 			td.dataset.x = j;
 
-			if (boardHeight.value && boardWidth.value >= 15) {
+			if (boardHeight.value >= 15 || boardWidth.value >= 15) {
 				td.style.width = "1.75rem";
 				td.style.height = "1.75rem";
 			}
@@ -43,6 +44,7 @@ const createChessBoard = () => {
 		}
 		chessBoardTable.appendChild(tr);
 	}
+	
 	board.appendChild(chessBoardTable);
 	dashboardPlayerName.innerHTML = "Player: " + playerName.value;
 	historyButton.classList.remove("hidden");
@@ -66,19 +68,19 @@ const hideVisibleHero = () => {
 
 const controlHero = () => {
 	window.addEventListener("keydown", (e) => {
-		if (e.key === "ArrowLeft") {
+		if (e.key === "ArrowLeft" && xPosition > 0) {
 			xPosition--;
 			heroMovements.unshift("Left");
 		}
-		if (e.key === "ArrowUp") {
+		if (e.key === "ArrowUp" && yPosition > 0) {
 			yPosition--;
 			heroMovements.unshift("Up");
 		}
-		if (e.key === "ArrowRight") {
+		if (e.key === "ArrowRight" && xPosition < (boardWidth.value - 1)) {
 			xPosition++;
 			heroMovements.unshift("Right");
 		}
-		if (e.key === "ArrowDown") {
+		if (e.key === "ArrowDown" && yPosition < (boardHeight.value - 1)) {
 			yPosition++;
 			heroMovements.unshift("Down");
 		}
@@ -111,7 +113,7 @@ dasboardButton.addEventListener("click", (e) => {
 		 return error.innerHTML = "All fields are required!", dasboardButton.classList.add("error-input");
 	} 
 	if(boardWidth.value < 3 || boardHeight.value < 3 || boardWidth.value > 20 || boardHeight.value > 20) {
-		return error.innerHTML = "Board height and width must be between 3 and 25", dasboardButton.classList.add("error-input");
+		return error.innerHTML = "Board height and width must be between 3 and 20", dasboardButton.classList.add("error-input");
 	}
 		dashboardPanel.classList.add("hidden");
 		board.classList.remove("hidden");
